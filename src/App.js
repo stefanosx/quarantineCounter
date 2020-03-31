@@ -5,7 +5,6 @@ import logo from './logo.svg';
 import './App.css';
 import Calendar from './Calendar'
 import Input from './Input'
-import Joke from './Joke'
 
 const useFormState = ({ cookies }) => {
   const days = cookies.get('Days') || undefined
@@ -26,10 +25,6 @@ const useFormState = ({ cookies }) => {
   return [state, handleChange]
 }
 
-const Quarantine = ({}) => {
-
-}
-
 function App() {
   const cookies = new Cookies();
   const [state, handleChange] = useFormState({ cookies })
@@ -38,11 +33,8 @@ function App() {
   return (
     <div className="App">
       { condition ?
-        (<Calendar days={state["days"]} onChange={handleChange} />) :
-        (<div>
-          <Input onChange={handleChange} days={state["days"]} />
-          <Joke cookies={cookies}/>
-        </div>)
+        (<Calendar days={state["days"]} onChange={handleChange} cookies={cookies}/>) :
+        ( <Input onChange={handleChange} days={state["days"]} /> )
       }
     </div>
   );

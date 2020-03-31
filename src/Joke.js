@@ -32,7 +32,6 @@ const getCachedJoke = ( {cookies} ) => {
     response = fetchJoke({cookies})
   } else {
     const today = moment(new Date()).format("DD/MM/YYYY")
-    console.log(cacheExpired === today)
     if ( cacheExpired === today ) {
       response = cookies.get("joke")
     } else {
@@ -48,7 +47,13 @@ const Joke = ({cookies}) => {
 
   return (
     <div className="joke">
-      <h4></h4>
+      <div className="joke-header">
+        <span>Joke of the day</span>
+        <br/>
+        <small>{`Copyright: ${response.contents.copyright}`}</small>
+      </div>
+      <h3>{response.contents.jokes[0].joke.title}</h3>
+      <h4>{response.contents.jokes[0].joke.text}</h4>
     </div>
   )
 }

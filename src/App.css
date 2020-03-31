@@ -32,7 +32,16 @@
   margin: 0 auto;
 }
 
-#standard-number {
+.joke {
+  color: #efefef;
+}
+
+.joke-header {
+  margin-top: 2%;
+}
+
+.joke-header span{
+  font-size: 2em
 }
 
 
@@ -41,5 +50,5 @@ body {
   min-width: 600px;
   text-align: center;
   padding: 5%;
-  background-image: url('images/novel-coronavirus-covid-19.jpg');
+  background-color: #001f3f;
 }
