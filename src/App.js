@@ -1,41 +1,36 @@
-import React, { useState } from 'react';
-import moment from 'moment'
-import Cookies from 'universal-cookie';
-import logo from './logo.svg';
-import './App.css';
-import Calendar from './Calendar'
-import Input from './Input'
+import React, { useState } from "react";
+import moment from "moment";
+import Calendar from "./Calendar";
+import Input from "./Input";
+import "./App.css";
+import { cookies } from "./utils/cookies";
 
-const useFormState = ({ cookies }) => {
-  const days = cookies.get('Days') || undefined
-  const now = moment(new Date());
-  const [state, setState] = useState({ days: days})
+const useFormState = () => {
+  const days = cookies.get("Days");
+
+  const [state, setState] = useState({ days: days });
 
   const handleChange = (value) => {
-    const days = moment.duration(now.diff(moment(value))).asDays()
-    let intDays = parseInt(days)
-    console.log(intDays)
-    if (intDays === 0) {
-      intDays = undefined
-    }
-    setState({ days: intDays } )
-    cookies.set("Days", intDays)
-  }
+    const days = moment().diff(moment(value), "days");
+    setState({ days: days });
+    cookies.set("Days", days);
+  };
 
-  return [state, handleChange]
-}
+  return [state, handleChange];
+};
 
 function App() {
-  const cookies = new Cookies();
-  const [state, handleChange] = useFormState({ cookies })
-  const condition = state["days"] != undefined && state["days"] != "undefined"
+  const [{ days }, handleChange] = useFormState();
+
+  const hasDays = days != null;
 
   return (
     <div className="App">
-      { condition ?
-        (<Calendar days={state["days"]} onChange={handleChange} cookies={cookies}/>) :
-        ( <Input onChange={handleChange} days={state["days"]} /> )
-      }
+      {hasDays ? (
+        <Calendar days={days} onChange={handleChange} />
+      ) : (
+        <Input onChange={handleChange} days={days} />
+      )}
     </div>
   );
 }

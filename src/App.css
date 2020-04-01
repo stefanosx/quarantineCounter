@@ -4,6 +4,7 @@
   width: 400px;
   height: 300px;
   background-color: #ffffff82;
+  color: #efefef;
   border-radius: 1em;
   overflow: hidden;
   margin: 0 auto;
@@ -52,4 +53,5 @@ body {
   text-align: center;
   padding: 5%;
   background-color: #001f3f;
+  color: #B33F62;
 }
