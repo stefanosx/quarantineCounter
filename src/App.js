@@ -5,8 +5,6 @@ import logo from './logo.svg';
 import './App.css';
 import Calendar from './Calendar'
 import Input from './Input'
-import ReactPlayer from 'react-player'
-
 
 const useFormState = ({ cookies }) => {
   const days = cookies.get('Days') || undefined
@@ -34,13 +32,6 @@ function App() {
 
   return (
     <div className="App">
-      <ReactPlayer
-        url='https://www.youtube.com/watch?v=ARt9HV9T0w8'
-        playing
-        loop
-        width={0}
-        height={0}
-      />
       { condition ?
         (<Calendar days={state["days"]} onChange={handleChange} cookies={cookies}/>) :
         ( <Input onChange={handleChange} days={state["days"]} /> )
